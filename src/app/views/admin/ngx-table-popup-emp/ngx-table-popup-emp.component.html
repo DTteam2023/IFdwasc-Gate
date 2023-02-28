@@ -1,0 +1,51 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+  <form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="40"  class="pr-16">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        name="username"
+        [formControl]="itemForm.controls['username']"
+        placeholder = "اسم المستخدم" >
+      </mat-form-field>
+    </div>
+    <div fxFlex="10"  class="pr-16"></div>
+    <div fxFlex="40"  class="pr-16">
+      <mat-form-field class="full-width">
+        <input
+        matInput
+        type="text"
+        name="NationalId"
+        [formControl]="itemForm.controls['NationalId']"
+        placeholder="الرقم القومي" >
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="40"  class="pr-16">
+      <mat-form-field class="full-width">
+        <mat-select [formControl]="itemForm.controls['roleID']" name="roleID" placeholder="الصلاحية">
+          <mat-option *ngFor="let role of roles" [value]="role.name">
+              {{role.name}}
+        </mat-option>
+          </mat-select> 
+      </mat-form-field>
+    </div>
+    <div fxFlex="10"  class="pr-16"></div>
+    <div fxFlex="40"  class="pr-16">
+      <mat-form-field class="full-width">
+        <mat-select [formControl]="itemForm.controls['centerID']" name="centerID" placeholder="المركز">
+          <mat-option *ngFor="let center of centers" [value]="center.centerId">
+            {{center.centerName}}
+        </mat-option>
+          </mat-select> 
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" class="mt-16">
+      <button mat-raised-button color="primary" [disabled]="itemForm.invalid">حفظ</button>
+      <span fxFlex></span>
+      <button mat-button color="warn" type="button" (click)="dialogRef.close(false)">الغاء</button>
+    </div>
+  </div>
+  </form>

@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="ml-8 mr-8 mt-8 pb-16 ">
+      <div class="mat-elevation-z8" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
+          <mat-table [dataSource]="dataSource" matSort  >
+    
+              <ng-container matColumnDef="l1description">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> اسم الصنف </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="l1description"> {{row.l1description}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Unit">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> الوحدة </mat-header-cell>
+                <mat-cell *matCellDef="let row" [style.color]="row.color" data-label="Unit"> {{row.Unit}} </mat-cell>
+              </ng-container>
+              
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;">
+              </mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </div>
+    
+  </div>

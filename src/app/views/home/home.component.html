@@ -1,0 +1,83 @@
+<app-header-top></app-header-top>
+<div >    
+  <section class="home-section section-intro text-center ">
+    <div class="container">
+        <!--<span class="egret">Egret</span>
+        <img src="assets/images/5-star.png" alt="">-->
+        <h1>البوابة الرقمية</h1>
+        <h1>لشركة مياه الشرب والصرف الصحي بالفيوم</h1>
+
+       <!--  <p>Quick start your project within <strong>few minutes</strong>.
+          Seed project is included.</p>
+       <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" class="mb-48">
+          <button mat-raised-button mat-lg-button color="primary" [routerLink]="['/sessions/404/']">Go Started</button>
+          <span fxFlex="8px"></span>
+          
+        </div>-->
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" class="pt-48 ">
+          <!--<a href="http://egret.ui-lib.com/angular/doc/index.html#demos" mat-button color="accent" target="_blank"></a>
+          <a href="https://ui-lib.com/github-access/" mat-button color="warn" target="_blank"></a>-->
+          <button mat-button  [matMenuTriggerFor]="menu">
+            <span></span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngFor="let str of Compstructure" (click)="getHirarchy(str)">
+                <span  class="notifications-dropdown"></span>
+            </button>
+          </mat-menu>   
+        </div>
+    </div>
+  </section>
+
+  <section id="demos" class="home-section section-demos mat-bg-default ">
+    <div class="container serv">
+      <div class="text-center">
+          <h3 class="text-20 mt-0 mb-16 font-weight-bold">خدمات العاملين</h3>
+          <!--<p>Quick start your project within <strong>few minutes</strong>.
+            Seed project is included.</p>-->
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+        <div class="demo-box-wrap" fxFlex="100" fxFlex.sm="50" fxFlex.gt-sm="33.33" *ngFor="let v of Services">
+          <div class="text-center demo-box" [matTooltip]="v.name" matTooltipPosition="above">
+            <div (click)="goToDashboard(v)"  class="p-0 screenshot">
+              <img [src]="v.photo">
+            </div>
+            <h3 class="format">{{v.name}}</h3>
+          </div>
+        </div>
+      </div>
+    <!--  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" class="mb-48">
+        <span fxflex></span>
+        <button mat-raised-button mat-lg-button style="background-color: #ffc107; font-weight: bold; font-size: 17px;" [routerLink]="['/sessions/404/']">المزيد .. </button>
+      </div> -->
+    </div>
+  </section>
+
+  <section id="demos" class="home-section section-demos mat-bg-default " style="background-color: rgb(255, 255, 255);">
+    <div class="container app">
+      <div class="text-center">
+          <h3 class="text-20 mt-0 mb-16 font-weight-bold">التطبيقات المتاحة</h3>
+          <!--<p>Quick start your project within <strong>few minutes</strong>.
+            Seed project is included.</p>-->
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="center center">
+        <div class="demo-box-wrap" fxFlex="100" fxFlex.sm="50" fxFlex.gt-sm="33.33" *ngFor="let v of Apps">
+          <div class="text-center demo-box" [matTooltip]="v.name" matTooltipPosition="above">
+            <div (click)="goToDashboard(v)"  class="p-0 screenshot">
+              <img [src]="v.photo">
+            </div>
+            <h3>{{v.name}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!--<section> 
+  <div class="container">
+  <div class="d-flex py-16 justify-content-center w-full mat-bg-card">
+    <h4>الإدارة العامة لتكنولوجيا المعلومات - إدارة التحول الرقمي</h4>
+  </div>
+</div>
+</section>-->
+<app-footer></app-footer>
+</div>

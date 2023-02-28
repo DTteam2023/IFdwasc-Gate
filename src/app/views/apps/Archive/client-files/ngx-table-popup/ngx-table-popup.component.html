@@ -1,0 +1,18 @@
+<h1 matDialogTitle>{{data.title}}</h1>
+<div fxLayout="row">
+
+  <span fxFlex></span>
+  <button mat-raised-button color="primary" class="ml-16 mr-16" (click)="choosefile()">تعديل</button>
+  <button mat-raised-button color="accent" type="button" (click)="print()">طباعة</button>
+</div>
+<div fxLayout="row wrap">
+  <div id="component1" class="imagePreview">
+    <img id="img1" [src]="imgSrc">
+  </div>
+  <div fxFlex="100" class="mt-16">
+    <span fxFlex></span>
+    <button mat-raised-button color="primary" class="ml-16 mr-16" [disabled]="!showEditOption"
+      (click)="submit()">{{"حفظ"}}</button>
+    <button mat-raised-button color="warn" type="button" (click)="dialogRef.close(false)">الغاء</button>
+  </div>
+</div>

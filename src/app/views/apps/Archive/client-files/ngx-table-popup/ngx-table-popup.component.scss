@@ -1,0 +1,28 @@
+.imagePreview{
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-right: 50px;
+    width: 300px; 
+    height: 380px;
+}
+footer {
+  font-size: 9px;
+  color: #f00;
+  text-align: center;
+}
+
+
+@media print {
+    @page {  size: A4; margin: 0 0 0 0; padding: 0px 0px 0px 0px; }
+    
+    @page :footer {
+      display: none
+  }
+
+  @page :header {
+      display: none
+  }
+  body {
+    padding: 0px 0px 0px 0px;
+}
+ }

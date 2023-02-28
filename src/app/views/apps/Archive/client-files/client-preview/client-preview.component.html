@@ -1,0 +1,39 @@
+<mat-table [dataSource]="dataSource" matSort class="default-table mat-box-shadow" style="width: 100%">
+
+  <ng-container matColumnDef="receiptId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>رقم الايصال</mat-header-cell>
+    <mat-cell *matCellDef="let row" [style.color]="row.color" data-label="receiptId"> {{row.receiptId}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="receipt">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>نوع الملف</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-icon-button mat-sm-button  (click)="openPopUp(row.receiptId,'wCheckValueReceipt',colName.wCheckValueReceipt)">
+        {{colName.wCheckValueReceipt}}
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="assay">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>نوع الملف</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-icon-button mat-sm-button  (click)="openPopUp(row.receiptId,'wMaintenanceValue',colName.wMaintenanceValue)">
+        {{colName.wMaintenanceValue}}
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-icon-button (click)="deleteReceipt(row.receiptId)"  color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displaySPreviewColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let row; columns: displaySPreviewColumns;">
+  </mat-row>
+</mat-table>

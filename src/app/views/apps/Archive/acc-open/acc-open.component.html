@@ -1,0 +1,229 @@
+<mat-card class="p-0">
+    <mat-card-title class="">
+        <div class="card-title-text"> {{isNormal? 'طلب فتح حساب رسمي ' : 'طلب فتح حساب عشوائي '}}</div>
+
+        <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-vertical-stepper [linear]="true" (selectionChange)="onStepChange($event)">
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <div>
+                        <ng-template matStepLabel>رقم الحساب</ng-template>
+                        <mat-form-field class="pt-16 pb-16">
+                            <input matInput placeholder="رقم الحساب" formControlName="AccountId"
+                                (keyup.enter)="onKey($event)" (paste)="onKey($event)" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <ng-template matStepLabel>اسم العميل</ng-template>
+                        <mat-form-field class="pt-16 pb-16">
+                            <input matInput placeholder="اسم العميل" value="{{name}}" disabled>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-error class="empty-input-message"
+                            *ngIf=" firstFormGroup.controls['AccountId'].touched && name==''">هذا الحساب غير
+                            موجود </mat-error>
+                        <mat-error class="empty-input-message" *ngIf="isExist ">رقم الحساب مسجل من قبل
+                        </mat-error>
+                    </div>
+                    <div>
+                        <button mat-raised-button color="primary" matStepperNext [disabled]="firstFormGroup.invalid"><a
+                                href="#title"></a>التالي</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup" #title>
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel id="title0">عقد ملكية أو عقد ايجار</ng-template>
+                    <div class="row">
+                        <div class="col-8">
+                            <label class="btn btn-default p-0">
+                                <button type="button" mat-raised-button color="primary"
+                                    (click)="compressFile('OwnerLeaseContract','mySelect1','secondFormGroup')">Choose
+                                    File</button>
+                                <span fxFlex="8px"></span>
+                                <button type="button" mat-raised-button
+                                    (click)="scan('secondFormGroup','OwnerLeaseContract','OwnerLeaseContractImg','mySelect1')">Scan</button>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="imagePreview">
+                        <img id="OwnerLeaseContractImg" [src]="userData.OwnerLeaseContract" class="preview">
+                    </div>
+                    <div fxLayout="row" class="addpad">
+                        <button mat-raised-button color="accent" matStepperPrevious>السابق</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-raised-button color="primary" id="mySelect1" matStepperNext>التالي</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="thirdFormGroup">
+                <form [formGroup]="thirdFormGroup">
+                    <ng-template matStepLabel id="title1">صورة بطاقة شخصية</ng-template>
+                    <div class="row">
+                        <div class="col-8">
+                            <label class="btn btn-default p-0">
+                                <button type="button" mat-raised-button color="primary"
+                                    (click)="compressFile('NationalImg','mySelect2','thirdFormGroup')">Choose
+                                    File</button>
+                                <span fxFlex="8px"></span>
+                                <button type="button" mat-raised-button
+                                    (click)="scan('thirdFormGroup','NationalImg','NationalImgImg','mySelect2')">Scan</button>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="imagePreview">
+                        <img id="NationalImgImg" [src]="userData.NationalImg" class="preview">
+                    </div>
+                    <div fxLayout="row" class="addpad">
+                        <button mat-raised-button color="accent" matStepperPrevious>السابق</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-raised-button color="primary" id="mySelect2" matStepperNext>التالي</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="forthFormGroup">
+                <form [formGroup]="forthFormGroup">
+                    <ng-template matStepLabel id="title2">وصل مياه للجار</ng-template>
+                    <div class="row">
+                        <div class="col-8">
+                            <label class="btn btn-default p-0">
+                                <button type="button" mat-raised-button color="primary"
+                                    (click)="compressFile('NeighborBill','mySelect3','forthFormGroup')">Choose
+                                    File</button>
+                                <span fxFlex="8px"></span>
+                                <button type="button" mat-raised-button
+                                    (click)="scan('forthFormGroup','NeighborBill','NeighborBillImg','mySelect3')">Scan</button>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="imagePreview">
+                        <img id="NeighborBillImg" [src]="userData.NeighborBill" class="preview">
+                    </div>
+                    <div fxLayout="row" class="addpad">
+                        <button mat-raised-button color="accent" matStepperPrevious>السابق</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-raised-button color="primary" id="mySelect3" matStepperNext>التالي</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="fifthFormGroup" *ngIf="isNormal">
+                <form [formGroup]="fifthFormGroup">
+                    <ng-template matStepLabel id="title3">رخصة العقار</ng-template>
+                    <div class="row">
+                        <div class="col-8">
+                            <label class="btn btn-default p-0">
+                                <button type="button" mat-raised-button color="primary"
+                                    (click)="compressFile('ApartmentLicense','mySelect4','fifthFormGroup')">Choose
+                                    File</button>
+                                <span fxFlex="8px"></span>
+                                <button type="button" mat-raised-button
+                                    (click)="scan('fifthFormGroup','ApartmentLicense','ApartmentLicenseImg','mySelect4')">Scan</button>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="imagePreview">
+                        <img id="ApartmentLicenseImg" [src]="userData.ApartmentLicense" class="preview">
+                    </div>
+                    <div fxLayout="row" class="addpad">
+                        <button mat-raised-button color="accent" matStepperPrevious>السابق</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-raised-button color="primary" id="mySelect4" matStepperNext>التالي</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="sixthFormGroup" *ngIf="isNormal">
+                <form [formGroup]="sixthFormGroup">
+                    <ng-template matStepLabel id="title4">موافقة المحليات</ng-template>
+                    <div class="row">
+                        <div class="col-8">
+                            <label class="btn btn-default p-0">
+                                <button type="button" mat-raised-button color="primary"
+                                    (click)="compressFile('MahaliatApproval','mySelect5','sixthFormGroup')">Choose
+                                    File</button>
+                                <span fxFlex="8px"></span>
+                                <button type="button" mat-raised-button
+                                    (click)="scan('sixthFormGroup','MahaliatApproval','MahaliatApprovalImg','mySelect5')">Scan</button>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="imagePreview">
+                        <img id="MahaliatApprovalImg" [src]="userData.MahaliatApproval" class="preview">
+                    </div>
+                    <div fxLayout="row" class="addpad">
+                        <button mat-raised-button color="accent" matStepperPrevious>السابق</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-raised-button color="primary" id="mySelect5" matStepperNext>التالي</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="seventhFormGroup">
+                <form [formGroup]="seventhFormGroup">
+                    <ng-template matStepLabel id="title5">العقد بين العميل والشركة</ng-template>
+                    <div class="row">
+                        <div class="col-8">
+                            <label class="btn btn-default p-0">
+                                <button type="button" mat-raised-button color="primary"
+                                    (click)="compressFile('CompanyCustomerContract','mySelect6','seventhFormGroup')">Choose
+                                    File</button>
+                                <span fxFlex="8px"></span>
+                                <button type="button" mat-raised-button
+                                    (click)="scan('seventhFormGroup','CompanyCustomerContract','CompanyCustomerContractImg','mySelect6')">Scan</button>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="imagePreview">
+                        <img id="CompanyCustomerContractImg" [src]="userData.CompanyCustomerContract" class="preview">
+                    </div>
+                    <div fxLayout="row" class="addpad">
+                        <button mat-raised-button color="accent" matStepperPrevious>السابق</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-raised-button color="primary" id="mySelect6" matStepperNext>التالي</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <form>
+                    <ng-template matStepLabel id="title6">اقرار في حالة وجود اكثر من مالك</ng-template>
+                    <div class="row">
+                        <div class="col-8">
+                            <label class="btn btn-default p-0">
+                                <button type="button" mat-raised-button color="primary"
+                                    (click)="compressFile('MoreOwnerAvowal','mySelect7')">Choose File</button>
+                                <span fxFlex="8px"></span>
+                                <button type="button" mat-raised-button
+                                    (click)="scan('','MoreOwnerAvowal','MoreOwnerAvowalImg','mySelect7')">Scan</button>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="imagePreview">
+                        <img id="MoreOwnerAvowalImg" [src]="userData.MoreOwnerAvowal" class="preview">
+                    </div>
+                    <div fxLayout="row" class="addpad">
+                        <button mat-raised-button color="accent" matStepperPrevious>السابق</button>
+                        <span fxFlex="8px"></span>
+                        <button mat-raised-button color="primary" id="mySelect7" matStepperNext>التالي</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <div>
+                    <mat-icon class="pt-16" [style.fontSize]="'36px'">check</mat-icon>
+                </div>
+                <div class="pb-16 mb-16"> You Are Done.</div>
+                <div fxLayout="row">
+                    <button mat-raised-button color="accent" matStepperPrevious>السابق</button>
+                    <span fxFlex="8px"></span>
+                    <button mat-raised-button color="primary" (click)="submit()">حفظ</button>
+                </div>
+            </mat-step>
+        </mat-vertical-stepper>
+    </mat-card-content>
+</mat-card>

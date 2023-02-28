@@ -1,0 +1,42 @@
+<br><p style="text-align: center;">سجل الموظفين</p>
+<mat-table [dataSource]="dataSource" matSort class="default-table mat-box-shadow" style="width: 100%;">
+
+    <ng-container matColumnDef="fullName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>اسم الموظف</mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color" data-label="fullName"> {{row.fullName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="empCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>كود الموظف</mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color" data-label="empCode"> {{row.empCode}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="userName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>اسم المستخدم</mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color" data-label="userName"> {{row.userName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nationalId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>الرقم القومي</mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color" data-label="nationalId"> {{row.nationalId}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="roles">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>الصلاحية</mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.color" data-label="roles"> {{row.roles}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> تعديل </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <button mat-icon-button (click)="openPopUp(row)" color="primary">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displaySPreviewColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displaySPreviewColumns;">
+    </mat-row>
+</mat-table>

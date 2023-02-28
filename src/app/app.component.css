@@ -1,0 +1,20 @@
+.imagePreview{
+    padding-top: 10px;
+    padding-bottom: 30px;
+    width: 300px; 
+    height: 400px;
+}
+.addpad{
+    padding-top: 30px;
+}
+
+.empty-input-message {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-weight: bold;
+    background-color: beige;
+    background-size: 2cm;
+  }
+
+

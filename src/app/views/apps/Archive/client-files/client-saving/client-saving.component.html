@@ -1,0 +1,36 @@
+<div class="container">
+
+  <div class="ml-8 mr-8 mt-8 pb-16 ">
+    <div class="mat-elevation-z8">
+      <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> اسم الملف </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="title">
+            <button mat-icon-button mat-sm-button  (click)="openPopUp(row)">
+              {{row.title}}
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button mat-icon-button (click)="openPopUp(row)"  color="primary">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+    </div>
+  </div>
+  <div style="padding-right: 87%;">
+  <button mat-raised-button (click)="deleteAcc()" [disabled]="activebtn"  color="warn">
+    <mat-icon>delete</mat-icon> حذف الطلب
+  </button>
+</div>
+</div>

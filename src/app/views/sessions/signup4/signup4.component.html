@@ -1,0 +1,105 @@
+<div
+  [perfectScrollbar]="{}"
+  class="h-full-screen signup4-wrap slate"
+  fxLayout="row wrap"
+  fxLayoutAlign="center center"
+>
+  <div
+    class="signup4-container mat-elevation-z4 "
+    fxLayout="row wrap"
+    fxLayout.xs="column"
+    fxLayoutAlign="start stretch"
+    fxFlex="60"
+    fxFlex.xs="94"
+    fxFlex.sm="80"
+    [@animate]="{value:'*',params:{y:'120px',opacity:'0',delay:'100ms', duration: '400ms'}}"
+  >
+
+  <!-- Left Side content -->
+  <div fxLayout="column" fxLayoutAlign="center center" 
+  class="signup4-header mat-bg-default" fxFlex="40">
+
+    <div class="" fxLayout="row wrap" fxLayoutAlign="center center">
+        <img width="200px" src="assets/images/illustrations/posting_photo.svg" alt="">
+    </div>
+
+  </div>
+
+    <!-- Right side content -->
+   <div fxFlex="60" fxLayout="row wrap" fxLayoutAlign="center center">
+    <form  [formGroup]="signupForm" class="signup4-form mat-bg-card" (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>الرقم القومي</mat-label>
+          <input 
+            formControlName="NationalId" 
+            matInput type="text" 
+            name="NationalId" 
+            minlength="14"  
+            maxlength="14"
+            placeholder="الرقم القومي" 
+            (keyup)="onKey($event)"
+            (paste)="onKey($event)"
+          />
+        </mat-form-field>
+        <small 
+        *ngIf="isExist && signupForm.controls['NationalId'].touched"
+        class="form-info-msg"> {{userData.FirstName}}</small>
+
+        <small 
+        *ngIf="!isExist && signupForm.controls['NationalId'].touched"
+        class="form-error-msg"> لا يحق لك تسجيل حساب , الرقم القومي غير مسجل في قاعدة البيانات </small>
+
+        <small 
+        *ngIf="isExist && isRegisted && signupForm.controls['NationalId'].touched"
+        class="form-error-msg"> هذا الموظف مسجل من قبل</small>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>اسم المستخدم</mat-label>
+          <input 
+            matInput 
+            formControlName = "username" 
+            type = "text" 
+            name = "username" 
+            placeholder = "اسم المستخدم" 
+            (keyup)="onKeyUser($event)"
+          />
+        </mat-form-field>
+
+        <small 
+        *ngIf="isDuplicated && signupForm.controls['username'].touched"
+        class="form-error-msg"> اسم المستخدم مسجل من قبل</small>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>كلمة السر</mat-label>
+          <input 
+            matInput 
+            formControlName ="password" 
+            type ="password" 
+            name ="password" 
+            placeholder ="يجب ان يحتوى على ارقام و رموز و العدد لا يقل عن 8" />
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>المركز</mat-label>
+          <mat-select formControlName="centerID" name="centerID">
+            <mat-option *ngFor="let center of centers" [value]="center.centerId">
+              {{center.centerName}}
+            </mat-option>
+          </mat-select>    
+        </mat-form-field>
+        <br/>
+        <mat-checkbox formControlName="agreed"
+        >I agree with terms and condtions</mat-checkbox
+      >
+      
+      <div fxLayout="row wrap" fxLayoutAlign="start center" style="margin-top: 20px;">
+        <button mat-flat-button color="primary">انشاء حساب جديد</button>
+        <span style="padding: 0px 8px 0px 16px;">or</span>
+        <a class="font-weight-bold mat-color-primary" routerLink="/sessions/signin4">تسجيل الدخول</a>
+      </div>
+
+    </form>
+   </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="page-layout overflow-hidden pb-8">
+  <div class="header-bg blue-grey"></div>
+
+  <div class="content">
+    <div class="content-header p-24" fxLayout="row " fxLayoutAlign="start center">
+      <h1 class="text-white m-0">ملف العميل</h1>&nbsp;&nbsp;&nbsp;
+
+    </div>
+    <div class="search-box mat-elevation-z2" fxLayout="row wrap" fxLayoutAlign="center center">
+      <button mat-icon-button><mat-icon>search</mat-icon></button>
+      <input type="text" (keyup.enter)="updateSearchTerm(searchTerm.value)" (paste)="updateSearchTerm(searchTerm.value)" placeholder="رقم حساب العميل" #searchTerm />
+    </div>
+    <br />
+    <div class="content-body">
+      <div class="content-card mat-bg-default">
+        <mat-tab-group>
+          <mat-tab label="طلب فتح حساب">
+            <div class="p-24 h-100vh-280px" *ngIf="openSearch">
+              <app-client-open accType={{acc}} [db]="opensearchData" accountID={{SearchTerm}}></app-client-open>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب معاينة المياه">
+            <div class="p-24 h-100vh-280px" *ngIf="wpreviewSearch">
+              <app-client-preview previewType="water" [db]="wpreviewData" accountID={{SearchTerm}}></app-client-preview>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب معاينة الصرف">
+            <div class="p-24 h-100vh-280px" *ngIf="spreviewSearch">
+              <app-client-preview previewType="sewer" [db]="spreviewData" accountID={{SearchTerm}}></app-client-preview>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب توفير المياه">
+            <div class="p-24 h-100vh-280px" *ngIf="wsaveSearch">
+              <app-client-saving saveType="water" [db]="wsaveData" accountID={{SearchTerm}}></app-client-saving>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب توفير الصرف">
+            <div class="p-24 h-100vh-280px" *ngIf="ssaveSearch">
+              <app-client-saving saveType="sewer" [db]="ssaveData" accountID={{SearchTerm}}></app-client-saving>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب نقل الملكية">
+            <div class="p-24 h-100vh-280px" *ngIf="conveyanceSearch">
+              <app-client-conveyance [db]="conveyanceData" accountID={{SearchTerm}}></app-client-conveyance>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب فحص العداد">
+            <div class="p-24 h-100vh-280px" *ngIf="checkMeterSearch">
+              <app-client-check-merer [db]="checkMeterData" accountID={{SearchTerm}}></app-client-check-merer>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب قطع توصيلة نهائي"> 
+            <div class="p-24 h-100vh-280px" *ngIf="cutOffSearch">
+              <app-client-connect-cutoff [db]="cutOffData" accountID={{SearchTerm}}></app-client-connect-cutoff>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب شهادة بيانات للعميل">
+            <div class="p-24 h-100vh-280px" *ngIf="certificationSearch">
+              <app-client-certification [db]="certificationData" accountID={{SearchTerm}}></app-client-certification>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب كشف حساب للعميل">
+            <div class="p-24 h-100vh-280px" *ngIf="accStateSearch">
+              <app-client-acc-state [db]="accStateData" accountID={{SearchTerm}}></app-client-acc-state>
+            </div>
+          </mat-tab>
+          <mat-tab label="طلب ملف عداد مسروق">  
+            <div class="p-24 h-100vh-280px" *ngIf="stoleSearch">
+            <app-client-stole [db]="stoleData" accountID={{SearchTerm}}></app-client-stole>
+          </div>
+         </mat-tab>
+          <mat-tab label="طلب فرق المقايسة"> 
+            <div class="p-24 h-100vh-280px" *ngIf="checkdiffSearch">
+            <app-client-checkdiff [db]="checkdiffData" accountID={{SearchTerm}}></app-client-checkdiff>
+          </div>
+         </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+
+  </div>
+
+</div>

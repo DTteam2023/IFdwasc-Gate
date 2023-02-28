@@ -1,0 +1,43 @@
+.serv{
+    padding-top: 50px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.app{
+    padding-top: 50px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+#demos{
+    padding-top: 0px;
+    
+    
+
+}
+.mat-button{
+    font-weight: bold;
+}
+.mat-button, .mat-menu-item {
+    font-family: unset;
+    width: 900px;
+
+}
+
+.section-intro::before {
+    //background: rgba(63,81,181,.80);
+    //content: '';
+    //position: absolute;
+    //left: 0;
+    //top: 0;
+    //height: 100%;
+    width: 100%;
+    /* ... */
+  }
+  .container{
+    position: relative;
+  }
+  h1{
+    color: #fff;
+  }
